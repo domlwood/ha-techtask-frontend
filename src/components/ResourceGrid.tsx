@@ -1,8 +1,5 @@
-import { useState } from 'react'
-import { groupByCategory } from '../utils/groupByCategory'
-import { sortCategories, type CategoryOrder } from '../utils/sortCategories'
-import { useResourceFilter } from '../hooks/useResourceFilter'
-import type { Resource, ResourceCategory } from '../types/resource'
+import { useResourceGrid } from '../hooks/useResourceGrid'
+import type { Resource } from '../types/resource'
 import { CategorySortSelect } from './CategorySortSelect'
 import { FilterInput } from './FilterInput'
 import { ResourceCard } from './ResourceCard'
@@ -12,13 +9,8 @@ interface ResourceGridProps {
 }
 
 export const ResourceGrid = ({ resources }: ResourceGridProps) => {
-  const [order, setOrder] = useState<CategoryOrder>('default')
-  const { query, setQuery, filteredResources } = useResourceFilter(resources)
-  const grouped = groupByCategory(filteredResources)
-  const categories = sortCategories(
-    Object.keys(grouped) as ResourceCategory[],
-    order,
-  )
+  const { query, setQuery, order, setOrder, categories, grouped } =
+    useResourceGrid(resources)
 
   return (
     <div>

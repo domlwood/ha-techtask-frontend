@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { useAverageColor } from '../hooks/useAverageColor'
 import type { Resource } from '../types/resource'
 import { Button } from './Button'
@@ -7,7 +8,7 @@ interface ResourceCardProps {
   resource: Resource
 }
 
-export const ResourceCard = ({ resource }: ResourceCardProps) => {
+const ResourceCardComponent = ({ resource }: ResourceCardProps) => {
   const backgroundColor = useAverageColor(resource.thumbnail)
 
   return (
@@ -53,3 +54,5 @@ export const ResourceCard = ({ resource }: ResourceCardProps) => {
     </article>
   )
 }
+
+export const ResourceCard = memo(ResourceCardComponent)
