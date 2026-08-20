@@ -24,6 +24,17 @@ const secondPodcastResource: Resource = {
   date_uploaded: '2025-07-20',
 }
 
+const articleResource: Resource = {
+  id: '008',
+  category: 'Articles',
+  title: 'The Science of Sleep',
+  thumbnail: 'https://example.com/photo3.jpg',
+  tags: ['sleep'],
+  duration: 8,
+  description: 'Research on how sleep affects health.',
+  date_uploaded: '2025-06-22',
+}
+
 describe('groupByCategory', () => {
   it('returns an empty object when given no resources', () => {
     expect(groupByCategory([])).toEqual({})
@@ -38,6 +49,13 @@ describe('groupByCategory', () => {
   it('keeps two resources of the same category together', () => {
     expect(groupByCategory([podcastResource, secondPodcastResource])).toEqual({
       Podcasts: [podcastResource, secondPodcastResource],
+    })
+  })
+
+  it('splits resources across categories correctly', () => {
+    expect(groupByCategory([podcastResource, articleResource])).toEqual({
+      Podcasts: [podcastResource],
+      Articles: [articleResource],
     })
   })
 })
