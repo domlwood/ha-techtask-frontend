@@ -2,5 +2,9 @@
 @import 'tailwindcss';
 
 :root {
-    font-family: 'Quicksand', sans-serif;
+  font-family: 'Quicksand', sans-serif;
+}
+
+body {
+  @apply bg-slate-50 text-slate-900;
 }
