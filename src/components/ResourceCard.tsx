@@ -11,7 +11,7 @@ export const ResourceCard = ({ resource }: ResourceCardProps) => {
   const backgroundColor = useAverageColor(resource.thumbnail)
 
   return (
-    <article className="flex text-start h-full flex-col overflow-hidden rounded-2xl">
+    <article className="flex h-full flex-col overflow-hidden rounded-2xl">
       <div
         className="relative"
         style={{ '--card-color': backgroundColor } as React.CSSProperties}
