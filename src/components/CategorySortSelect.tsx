@@ -10,7 +10,7 @@ export const CategorySortSelect = ({
   onChange,
 }: CategorySortSelectProps) => {
   return (
-    <label className="mb-6 flex items-center gap-2 text-sm font-semibold">
+    <label className="flex items-center gap-2 text-sm font-semibold">
       Sort categories
       <select
         value={value}
