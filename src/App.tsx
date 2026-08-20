@@ -1,12 +1,10 @@
-import { ResourceCard } from './components/ResourceCard'
+import { ResourceGrid } from './components/ResourceGrid'
 import { resources } from './data/resources'
 
 function App() {
   return (
-    <div className="mx-auto max-w-sm p-6">
-      {resources.map((r) => (
-        <ResourceCard key={r.id} resource={r} />
-      ))}
+    <div className="p-6">
+      <ResourceGrid resources={resources} />
     </div>
   )
 }
