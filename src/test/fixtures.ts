@@ -32,3 +32,14 @@ export const articleResource: Resource = Object.freeze({
   description: 'Research on how sleep affects health.',
   date_uploaded: '2025-06-22',
 })
+
+export const manyTagsResource: Resource = Object.freeze({
+  id: '009',
+  category: 'Recipes',
+  title: 'Energy Boost Smoothie',
+  thumbnail: 'https://example.com/photo4.jpg',
+  tags: ['nutrition', 'energy', 'tips', 'breakfast', 'quick'],
+  duration: 10,
+  description: 'A quick and nutritious smoothie recipe.',
+  date_uploaded: '2025-07-15',
+})
