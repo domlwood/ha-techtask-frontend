@@ -26,5 +26,5 @@ pnpm format     # prettier --write
 - **Detail View** - (click-to-expand showing full description + date uploaded)
 - **Debounced filter input** — the filter currently re-runs on every keystroke; fine at this data size, but the first thing I'd change for a larger dataset.
 - **Test coverage for `Button`, `useAverageColor`, and `useResourceGrid`.**
-- **Accessibility audit** — `eslint-plugin-jsx-a11y` to prevent accessibility drifting.
+- **Accessibility audit** — `eslint-plugin-jsx-a11y` to prevent accessibility drifting. Ensure text is readable against bg colors.
 - **Integration tests** - Cover the flow of the ResourceGrid in its entirety.
