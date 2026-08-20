@@ -1,73 +1,30 @@
-# React + TypeScript + Vite
+# HA | Wisdom Wellbeing — Resource Centre
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A single-page resource centre that displays mock resources grouped by category, with sorting and filtering. Built as a frontend tech task with a deliberate focus on visible TDD process.
 
-Currently, two official plugins are available:
+## Stack
+- React (Vite) + Typescript
+- Vitest + React Testing Library
+- ESLint + Prettier
+- Tailwind
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Setup
 
-## React Compiler
+Requires Node 24.19.0 (pinned in `.nvmrc` — run `nvm use` if you have nvm installed) and [pnpm](https://pnpm.io).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+pnpm install
+pnpm dev        # start the dev server
+pnpm test       # run the test suite
+pnpm build      # typecheck + production build
+pnpm lint       # eslint
+pnpm format     # prettier --write
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## What I'd add with more time
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **Detail View** - (click-to-expand showing full description + date uploaded)
+- **Debounced filter input** — the filter currently re-runs on every keystroke; fine at this data size, but the first thing I'd change for a larger dataset.
+- **Test coverage for `Button`, `useAverageColor`, and `useResourceGrid`.**
+- **Accessibility audit** — `eslint-plugin-jsx-a11y` to prevent accessibility drifting.
+- **Integration tests** - Cover the flow of the ResourceGrid in its entirety.
