@@ -1,6 +1,7 @@
 import { useAverageColor } from '../hooks/useAverageColor'
 import type { Resource } from '../types/resource'
 import { Button } from './Button'
+import { Tag } from './Tag'
 
 interface ResourceCardProps {
   resource: Resource
@@ -11,16 +12,21 @@ export const ResourceCard = ({ resource }: ResourceCardProps) => {
 
   return (
     <article className="flex text-start h-full flex-col overflow-hidden rounded-2xl">
-      <div className="relative">
+      <div
+        className="relative"
+        style={{ '--card-color': backgroundColor } as React.CSSProperties}
+      >
         <img
           src={resource.thumbnail}
           alt={resource.title}
           className="aspect-square w-full object-cover"
         />
-        <div
-          className="absolute inset-x-0 bottom-0 flex flex-col"
-          style={{ '--card-color': backgroundColor } as React.CSSProperties}
-        >
+        <div className="absolute top-0 left-0 flex flex-wrap gap-1 p-3">
+          {resource.tags.slice(0, 3).map((tag) => (
+            <Tag key={tag}>{tag}</Tag>
+          ))}
+        </div>
+        <div className="absolute inset-x-0 bottom-0 flex flex-col">
           <div className="h-10 bg-[linear-gradient(to_bottom,transparent,var(--card-color))]" />
           <div className="bg-(--card-color) p-4 pt-0">
             <h3 className="text-lg font-semibold text-white">
