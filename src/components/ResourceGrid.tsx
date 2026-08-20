@@ -1,5 +1,8 @@
+import { useState } from 'react'
 import { groupByCategory } from '../utils/groupByCategory'
-import type { Resource } from '../types/resource'
+import { sortCategories, type CategoryOrder } from '../utils/sortCategories'
+import type { Resource, ResourceCategory } from '../types/resource'
+import { CategorySortSelect } from './CategorySortSelect'
 import { ResourceCard } from './ResourceCard'
 
 interface ResourceGridProps {
@@ -7,15 +10,22 @@ interface ResourceGridProps {
 }
 
 export const ResourceGrid = ({ resources }: ResourceGridProps) => {
+  const [order, setOrder] = useState<CategoryOrder>('default')
   const grouped = groupByCategory(resources)
+  const categories = sortCategories(
+    Object.keys(grouped) as ResourceCategory[],
+    order,
+  )
 
   return (
     <div>
-      {Object.entries(grouped).map(([category, categoryResources]) => (
+      <CategorySortSelect value={order} onChange={setOrder} />
+
+      {categories.map((category) => (
         <section key={category} className="mb-8">
           <h2 className="mb-4 text-3xl font-semibold">{category}</h2>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:lg:grid-cols-3 lg:grid-cols-4">
-            {categoryResources?.map((resource) => (
+            {grouped[category]?.map((resource) => (
               <ResourceCard key={resource.id} resource={resource} />
             ))}
           </div>
