@@ -7,9 +7,35 @@ import { Tag } from './Tag'
 interface ResourceCardProps {
   resource: Resource
 }
+const ResourceCardSkeleton = () => (
+  <div
+    className="flex h-full flex-col overflow-hidden rounded-2xl"
+    role="status"
+    aria-label="Loading resource"
+  >
+    <div className="relative aspect-3/4 w-full animate-pulse overflow-hidden bg-slate-200">
+      <div className="absolute top-0 left-0 flex gap-1 p-3">
+        <div className="h-5 w-12 rounded-full bg-slate-300" />
+        <div className="h-5 w-12 rounded-full bg-slate-300" />
+        <div className="h-5 w-12 rounded-full bg-slate-300" />
+      </div>
+      <div className="absolute inset-x-0 bottom-0 space-y-2 p-4">
+        <div className="h-4 w-3/4 rounded-full bg-slate-300" />
+        <div className="h-3 w-full rounded-full bg-slate-300" />
+        <div className="h-3 w-5/6 rounded-full bg-slate-300" />
+        <div className="mt-2 h-6 w-20 rounded-full bg-slate-300" />
+      </div>
+    </div>
+  </div>
+)
 
 const ResourceCardComponent = ({ resource }: ResourceCardProps) => {
   const backgroundColor = useAverageColor(resource.thumbnail)
+  const isLoading = backgroundColor === null;
+
+  if (isLoading) {
+    return <ResourceCardSkeleton />
+  }
 
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-2xl shadow-md ring-1 ring-slate-900/5 transition-shadow duration-300 hover:shadow-xl">
